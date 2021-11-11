@@ -1,0 +1,28 @@
+만들것
+BlogController
+MainController
+UserController
+
+@RequestMapping("/{id:(?!assets).*}")
+BlogController{
+
+	@RequestMapping({"","/{categoryNo}", "/{postNo}"})
+	접근자 main(@PathVariable("id") blogId,
+			@PathVariable("categoryNo") Optional<Long> categoryNo,
+			@PathVariable("postNo") Optional postNo){
+				categoryNo.isPressent() -> true면 대입?
+	}
+	
+	@Auth
+	@RequestMapping("/admin")
+	접근자 adminBasic(@PathVariable("blogId") String blogId){
+	
+	}
+	
+	@Auth
+	@RequestMapping("/admin/category")
+	접근자 adminCategory(@PathVariable("blogId") String blogId){
+	
+	}
+	
+}

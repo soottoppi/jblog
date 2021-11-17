@@ -11,6 +11,17 @@
 		]]>
 	</select>
 	
+	<select id="findCategoryItem" parameterType="String" resultType="categoryvo">
+		<![CDATA[
+			select c.no, name, description, blog_id as blogId, count(p.category_no) as count
+				from category c left outer join post p on c.no = p.category_no
+			where c.blog_id = #{blogId }
+			group by c.no 
+			order by c.no desc
+			limit 0,1
+		]]>
+	</select>
+	
 	<select id="findCategoryNoAndName" parameterType="String" resultType="categoryvo">
 		<![CDATA[
 			select no, name 

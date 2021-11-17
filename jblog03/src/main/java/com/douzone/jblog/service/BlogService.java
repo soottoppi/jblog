@@ -114,5 +114,9 @@ public class BlogService {
 		return blogRepository.findPost(postNo);
 	}
 
+	public CategoryVo findCategoryItem(String blogId) {
+		return blogRepository.findCategoryItem(blogId);
+	}
+
 
 }

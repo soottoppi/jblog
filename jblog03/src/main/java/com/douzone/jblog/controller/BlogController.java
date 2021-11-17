@@ -17,7 +17,6 @@ import com.douzone.jblog.security.Auth;
 import com.douzone.jblog.security.AuthUser;
 import com.douzone.jblog.service.BlogService;
 import com.douzone.jblog.vo.BlogVo;
-import com.douzone.jblog.vo.CategoryVo;
 import com.douzone.jblog.vo.PostVo;
 import com.douzone.jblog.vo.UserVo;
 import com.douzone.mysite.exception.GalleryServiceException;
@@ -70,9 +69,9 @@ public class BlogController {
 	@Auth
 	@RequestMapping(value="/admin/basic", method=RequestMethod.POST)
 	public String adminBasic(@AuthUser UserVo authUser,
-							@PathVariable("id") String id, 
-							@RequestParam("file") MultipartFile file,
-							BlogVo blogVo) {
+				@PathVariable("id") String id, 
+				@RequestParam("file") MultipartFile file,
+				BlogVo blogVo) {
 		try {
 			String url = blogService.saveImg(file);
 			blogVo.setLogo(url);
@@ -87,22 +86,19 @@ public class BlogController {
 
 	@Auth
 	@RequestMapping("/admin/category")
-	public String adminCategory(@AuthUser UserVo authUser,
-								Model model) {
-		model.addAttribute("list",  blogService.list(authUser.getId()));
+	public String adminCategory() {
+//		model.addAttribute("list",  blogService.list(authUser.getId()));
 		return "/blog/blog-admin-category";
 	}
-	
+
 	@Auth
-	@RequestMapping(value="/admin/category", method=RequestMethod.POST)
-	public String adminCategory(@AuthUser UserVo authUser,
-							CategoryVo categoryVo,
-							Model model) {
-		categoryVo.setBlogId(authUser.getId());
-		blogService.add(categoryVo);
+	@RequestMapping(value = "/admin/category/delete", method = RequestMethod.POST)
+	public String adminDelete(@AuthUser UserVo authUser,
+			@RequestParam("no") Long no) {
+		blogService.delete(no);
 		return "redirect:/" + authUser.getId() + "/admin/category";
 	}
-
+	
 	@Auth
 	@RequestMapping(value = "/admin/write", method = RequestMethod.GET)
 	public String adminWrite(@AuthUser UserVo authUser,
@@ -119,11 +115,4 @@ public class BlogController {
 		return "redirect:/" + authUser.getId() + "/admin/write";
 	}
 	
-	@Auth
-	@RequestMapping(value = "/admin/category/delete", method = RequestMethod.POST)
-	public String adminDelete(@AuthUser UserVo authUser,
-								@RequestParam("no") Long no) {
-		blogService.delete(no);
-		return "redirect:/" + authUser.getId() + "/admin/category";
-	}
 }

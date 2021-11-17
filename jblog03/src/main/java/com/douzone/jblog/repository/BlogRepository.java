@@ -67,6 +67,10 @@ public class BlogRepository {
 	public PostVo findPost(Long postNo) {
 		return sqlSession.selectOne("post.findPost", postNo);
 	}
+
+	public CategoryVo findCategoryItem(String blogId) {
+		return sqlSession.selectOne("category.findCategoryItem", blogId);
+	}
 	
 	
 }

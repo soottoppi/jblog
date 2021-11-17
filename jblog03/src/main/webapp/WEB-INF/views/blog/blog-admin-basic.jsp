@@ -11,6 +11,7 @@
 <Link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/jblog.css">
 <script src="${pageContext.request.contextPath }/assets/js/jquery/admin-menu.js" type="text/javascript"></script>
+
 <script>
 var updateBasic = {
 	init : function() {

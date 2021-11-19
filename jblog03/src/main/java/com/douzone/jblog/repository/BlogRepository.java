@@ -48,8 +48,8 @@ public class BlogRepository {
 		sqlSession.insert("post.write",postVo);
 	}
 
-	public void delete(Long no) {
-		sqlSession.delete("category.delete", no);
+	public boolean delete(Long no) {
+		return sqlSession.delete("category.delete", no) == 1;
 	}
 
 	public List<PostVo> findPostList(Long categoryNo) {

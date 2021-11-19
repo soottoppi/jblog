@@ -1,29 +1,16 @@
-<% 
-	for(var i=0; i < data.length; i++){
-	var vo= data[i];
-%>
-	<tr>
-		<td><%=vo.no%></td>
-		<td><%=vo.name%></td>
-		<td><%=vo.count%></td>
-		<td><%=vo.description%></td>
-		<%
-			if(vo.count == 0 && vo.name != '미분류'){
-		%>
-			<td>
-				<form  action="jblog03/api/${authUser.id}/admin/category/delete" method="post" >
-					<input type='hidden' name="no" value="<%= vo.no %>">
-					<input type="image"  src="jblog03/assets/images/delete.jpg">
-				</form>
-			</td>
-		<% 
-			} else if (vo.count > 0 || vo.name == '미분류') {
-		%>
-			<td></td>
-		<%
-			}
-		%>
-	</tr>
-<% 
-	}
-%> 
+<% for(var i=0; i < data.length; i++){ var vo= data[i]; %>
+<tr data-no="<%=vo.no %>">
+    <td><%=vo.no%></td>
+    <td><%=vo.name%></td>
+    <td><%=vo.count%></td>
+    <td><%=vo.description%></td>
+    <% if(vo.count == 0 && vo.name != '미분류'){ %>
+    <td>
+        <img class="del" src="/jblog03/assets/images/delete.jpg"/>
+        <input class="del-cat-no" type="hidden" value="<%=vo.no %>" >
+    </td>
+    <% } else if (vo.count > 0 || vo.name == '미분류') { %>
+    <td></td>
+    <% } %>
+</tr>
+<% } %>

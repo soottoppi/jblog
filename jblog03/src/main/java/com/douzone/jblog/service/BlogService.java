@@ -94,8 +94,8 @@ public class BlogService {
 		blogRepository.write(postVo);
 	}
 
-	public void delete(Long no) {
-		blogRepository.delete(no);
+	public boolean delete(Long no) {
+		return blogRepository.delete(no);
 	}
 
 	public List<PostVo> findPostList(Long categoryNo) {

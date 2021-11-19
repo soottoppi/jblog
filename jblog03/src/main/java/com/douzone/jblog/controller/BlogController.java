@@ -87,17 +87,9 @@ public class BlogController {
 	@Auth
 	@RequestMapping("/admin/category")
 	public String adminCategory() {
-//		model.addAttribute("list",  blogService.list(authUser.getId()));
 		return "/blog/blog-admin-category";
 	}
 
-	@Auth
-	@RequestMapping(value = "/admin/category/delete", method = RequestMethod.POST)
-	public String adminDelete(@AuthUser UserVo authUser,
-			@RequestParam("no") Long no) {
-		blogService.delete(no);
-		return "redirect:/" + authUser.getId() + "/admin/category";
-	}
 	
 	@Auth
 	@RequestMapping(value = "/admin/write", method = RequestMethod.GET)
